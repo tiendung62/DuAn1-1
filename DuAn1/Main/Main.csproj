@@ -15,4 +15,11 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BLL\" />
+    <Folder Include="DAL\Services\" />
+    <Folder Include="BLL\Repository\" />
+    <Folder Include="GUI\View\" />
+  </ItemGroup>
+
 </Project>
