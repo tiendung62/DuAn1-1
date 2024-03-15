@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Main.Models
+namespace Main.BLL.Models
 {
     public partial class Ctsanpham
     {
@@ -19,10 +19,7 @@ namespace Main.Models
         public string? Kichthuoc { get; set; }
         public string? Degiay { get; set; }
         public string? Tengiay { get; set; }
-        public int? Gianhap { get; set; }
-        public int? Soluongton { get; set; }
         public decimal? Giaban { get; set; }
-        public string? Doitra { get; set; }
 
         public virtual Chatlieu? ChatlieuuNavigation { get; set; }
         public virtual Degiay? DegiayNavigation { get; set; }

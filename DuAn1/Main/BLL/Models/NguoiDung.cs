@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Main.Models
+namespace Main.BLL.Models
 {
     public partial class NguoiDung
     {
         public NguoiDung()
         {
-            Sanphams = new HashSet<Sanpham>();
+            Hoadons = new HashSet<Hoadon>();
         }
 
         public string IdnguoiDung { get; set; } = null!;
@@ -20,6 +20,6 @@ namespace Main.Models
         public string? Trangthai { get; set; }
 
         public virtual VaiTro? IdvaiTroNavigation { get; set; }
-        public virtual ICollection<Sanpham> Sanphams { get; set; }
+        public virtual ICollection<Hoadon> Hoadons { get; set; }
     }
 }

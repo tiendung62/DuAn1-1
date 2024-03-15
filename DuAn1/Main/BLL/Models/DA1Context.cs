@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Main.Models
+namespace Main.BLL.Models
 {
-    public partial class DUANContext : DbContext
+    public partial class DA1Context : DbContext
     {
-        public DUANContext()
+        public DA1Context()
         {
         }
 
-        public DUANContext(DbContextOptions<DUANContext> options)
+        public DA1Context(DbContextOptions<DA1Context> options)
             : base(options)
         {
         }
@@ -36,7 +36,7 @@ namespace Main.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=DUAN;Integrated Security=True");
+                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=DA1;Integrated Security=True");
             }
         }
 
@@ -72,15 +72,9 @@ namespace Main.Models
                     .HasMaxLength(50)
                     .HasColumnName("DEGIAY");
 
-                entity.Property(e => e.Doitra)
-                    .HasMaxLength(50)
-                    .HasColumnName("DOITRA");
-
                 entity.Property(e => e.Giaban)
                     .HasColumnType("money")
                     .HasColumnName("GIABAN");
-
-                entity.Property(e => e.Gianhap).HasColumnName("GIANHAP");
 
                 entity.Property(e => e.Idkm)
                     .HasMaxLength(10)
@@ -104,8 +98,6 @@ namespace Main.Models
                 entity.Property(e => e.Mau)
                     .HasMaxLength(50)
                     .HasColumnName("MAU");
-
-                entity.Property(e => e.Soluongton).HasColumnName("SOLUONGTON");
 
                 entity.Property(e => e.Tengiay)
                     .HasMaxLength(50)
@@ -174,6 +166,11 @@ namespace Main.Models
                     .IsUnicode(false)
                     .HasColumnName("IDKH");
 
+                entity.Property(e => e.IdnguoiDung)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("IDNguoiDung");
+
                 entity.Property(e => e.Ngayban)
                     .HasColumnType("datetime")
                     .HasColumnName("NGAYBAN");
@@ -196,6 +193,11 @@ namespace Main.Models
                     .WithMany(p => p.Hoadons)
                     .HasForeignKey(d => d.Idkh)
                     .HasConstraintName("FK_HOADON_KHACHHANG");
+
+                entity.HasOne(d => d.IdnguoiDungNavigation)
+                    .WithMany(p => p.Hoadons)
+                    .HasForeignKey(d => d.IdnguoiDung)
+                    .HasConstraintName("FK_HOADON_NGUOIDUNG");
             });
 
             modelBuilder.Entity<Hoadonct>(entity =>
@@ -436,7 +438,8 @@ namespace Main.Models
 
             modelBuilder.Entity<Sanpham>(entity =>
             {
-                entity.HasKey(e => e.Masp);
+                entity.HasKey(e => e.Masp)
+                    .HasName("PK__SANPHAM__60228A32AD3574FD");
 
                 entity.ToTable("SANPHAM");
 
@@ -445,28 +448,11 @@ namespace Main.Models
                     .IsUnicode(false)
                     .HasColumnName("MASP");
 
-                entity.Property(e => e.Diachinhap)
-                    .HasMaxLength(100)
-                    .HasColumnName("DIACHINHAP");
-
                 entity.Property(e => e.Giaban)
                     .HasColumnType("money")
                     .HasColumnName("GIABAN");
 
-                entity.Property(e => e.Gianhap).HasColumnName("GIANHAP");
-
-                entity.Property(e => e.IdnguoiDung)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("IDNguoiDung");
-
-                entity.Property(e => e.Ngaynhap)
-                    .HasColumnType("datetime")
-                    .HasColumnName("NGAYNHAP");
-
-                entity.Property(e => e.Soluongnhap).HasColumnName("SOLUONGNHAP");
-
-                entity.Property(e => e.Soluongton).HasColumnName("SOLUONGTON");
+                entity.Property(e => e.Soluong).HasColumnName("SOLUONG");
 
                 entity.Property(e => e.Tensp)
                     .HasMaxLength(30)
@@ -475,11 +461,6 @@ namespace Main.Models
                 entity.Property(e => e.Trangthai)
                     .HasMaxLength(50)
                     .HasColumnName("TRANGTHAI");
-
-                entity.HasOne(d => d.IdnguoiDungNavigation)
-                    .WithMany(p => p.Sanphams)
-                    .HasForeignKey(d => d.IdnguoiDung)
-                    .HasConstraintName("FK_SANPHAM_NguoiDung");
             });
 
             modelBuilder.Entity<VaiTro>(entity =>
@@ -492,8 +473,6 @@ namespace Main.Models
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasColumnName("IDVaiTro");
-
-                entity.Property(e => e.Ten).HasMaxLength(30);
 
                 entity.Property(e => e.Vaitro1)
                     .HasMaxLength(50)

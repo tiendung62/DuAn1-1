@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Main.Models
+namespace Main.BLL.Models
 {
     public partial class VaiTro
     {
@@ -11,7 +11,6 @@ namespace Main.Models
         }
 
         public string IdvaiTro { get; set; } = null!;
-        public string? Ten { get; set; }
         public string? Vaitro1 { get; set; }
 
         public virtual ICollection<NguoiDung> NguoiDungs { get; set; }

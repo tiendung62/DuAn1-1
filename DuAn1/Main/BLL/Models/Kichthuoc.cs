@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Main.Models
+namespace Main.BLL.Models
 {
     public partial class Kichthuoc
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Main.Models
+namespace Main.BLL.Models
 {
     public partial class Hoadon
     {
@@ -12,6 +12,7 @@ namespace Main.Models
 
         public string Mahd { get; set; } = null!;
         public string? Idkh { get; set; }
+        public string? IdnguoiDung { get; set; }
         public DateTime? Ngayban { get; set; }
         public string? Tensp { get; set; }
         public int? Soluong { get; set; }
@@ -19,6 +20,7 @@ namespace Main.Models
         public string? Trangthai { get; set; }
 
         public virtual Khachhang? IdkhNavigation { get; set; }
+        public virtual NguoiDung? IdnguoiDungNavigation { get; set; }
         public virtual ICollection<Hoadonct> Hoadoncts { get; set; }
     }
 }
