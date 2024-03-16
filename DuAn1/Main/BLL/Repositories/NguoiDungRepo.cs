@@ -15,6 +15,10 @@ namespace WinFormsApp1.Repositories
         {
             return context.NguoiDungs.ToList();
         }
+        public List<NguoiDung> CheckLogin (string email , string password)
+        {
+            return context.NguoiDungs.Where(x => x.Email == email && x.MatKhau == password).ToList();
+        }
         public List<NguoiDung> FindSvByName(string name)
         {
             return context.NguoiDungs.Where(x => x.Ten.ToLower().Contains(name)).ToList();
