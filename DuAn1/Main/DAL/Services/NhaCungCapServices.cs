@@ -1,19 +1,18 @@
-﻿using System;
+﻿using Main.BLL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WinFormsApp1.Models;
 using WinFormsApp1.Repositories;
 
 namespace WinFormsApp1.Services
 {
     internal class NhaCungCapServices
     {
-        NhaCungCapRepo repo = new NhaCungCapRepo();
-        public List<NhaCungCap> GetNhaCungCaps()
+        public List<NhaCungCap> GetNhaCungCaps(List<NhaCungCap> list)
         {
-            return repo.GetNhaCungCaps().ToList();
+            return list;
         }
     }
 }

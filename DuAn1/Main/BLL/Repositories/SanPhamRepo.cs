@@ -23,8 +23,7 @@ namespace WinFormsApp1.Repositories
         public bool them(Sanpham sanpham)
         {
             context.Sanphams.Add(sanpham);
-             context.SaveChanges();
-            return true;
+            return context.SaveChanges() > 0;
         }
         public bool sua(string masp, Sanpham sanpham)
         {

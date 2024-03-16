@@ -1,33 +1,32 @@
-﻿using System;
+﻿using Main.BLL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WinFormsApp1.Models;
 using WinFormsApp1.Repositories;
 
 namespace WinFormsApp1.Services
 {
     internal class SanphamServices
     {
-        SanPhamRepo _repo = new SanPhamRepo();
 
-        public List<Sanpham> GetSanphams()
+        public List<Sanpham> GetSanphams(List<Sanpham> list)
         {
-            return _repo.getallSPrepo().ToList() ;
+            return list;
         }
-        public bool AddSP(string ten, int soluong, int giaban, string trangthai)
+        public Sanpham AddSP(string ten, int soluong, int giaban, string trangthai )
         {
-            var sanpham = new Sanpham
+            Sanpham sanpham = new Sanpham
             {
                 Tensp = ten,
                 Soluong = soluong,
                 Giaban = giaban,
                 Trangthai = trangthai
             };
-            return _repo.them(sanpham) ;
+            return sanpham;
         }
-        public bool UpdateSP(string id , string name,int soluong, int giaban, string trangthai )
+        public Sanpham UpdateSP(string id , string name,int soluong, int giaban, string trangthai )
         {
             Sanpham sanpham = new Sanpham
             {
@@ -37,15 +36,15 @@ namespace WinFormsApp1.Services
                 Giaban = giaban,
                 Trangthai = trangthai
             };
-            return _repo.sua(id, sanpham);
+            return sanpham;
         }
-        public List<Sanpham> GetSanphamsByName(string name)
+        public List<Sanpham> GetSanphamsByName(string name , List<Sanpham> list)
         {
-            return _repo.FindSPByName(name).ToList();
+            return list;
         }
-        public bool DeleteSP(string id)
+        public string DeleteSP(string id )
         {
-            return _repo.xoa(id);  
+            return id;
         }
     }
 }
