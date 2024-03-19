@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Main.BLL.Models
+namespace Main.BLL.Models2
 {
     public partial class Sanpham
     {
