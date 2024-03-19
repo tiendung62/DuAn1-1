@@ -1,9 +1,10 @@
-﻿using Main.BLL.Models;
+﻿using Main.BLL.Models2;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 using WinFormsApp1.Repositories;
@@ -19,7 +20,7 @@ namespace WinFormsApp1.Services
         {
             var user = new NguoiDung
             {
-                IdnguoiDung = GenerateID(),
+                //IdnguoiDung = GenerateID(),
                 Ten = ten,
                 MatKhau = matkhau,
                 Diachi = diachi,
@@ -27,7 +28,7 @@ namespace WinFormsApp1.Services
                 Dthoai = sdt,
                 Trangthai = trangthai
             };
-            return repo.them(user);
+            return true;
         }
         public bool UpdateUser(string id, string ten, string matkhau, string diachi, string email, string sdt, string trangthai)
         {
@@ -50,7 +51,7 @@ namespace WinFormsApp1.Services
         }
         public bool CheckLogin(string email, string password)
         {
-            if (repo.CheckLogin(email, password).Count != 0)
+            if (repo.CheckLogin(email, password).Count > 0)
             {
                 return true;
             }

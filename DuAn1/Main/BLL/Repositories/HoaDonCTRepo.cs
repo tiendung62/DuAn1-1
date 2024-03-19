@@ -1,4 +1,4 @@
-﻿using Main.BLL.Models;
+﻿using Main.BLL.Models2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +11,14 @@ namespace WinFormsApp1.Repositories
     internal class HoaDonCTRepo
     {
 
-        DA1Context context = new DA1Context();
+        DUAN1Context context = new DUAN1Context();
         public List<Hoadonct> getallSPrepo()
         {
             return context.Hoadoncts.ToList();
         }
         //public List<Hoadon> FindSvByName(string name)
         //{
-        //    return context.Hoadoncts.Where(x => x..ToLower().Contains(name)).ToList();
+        //    return context.Hoadoncts.Where(x => x.Mahd = name).ToList();
         //}
         public bool them(Hoadonct hoadonct)
         {

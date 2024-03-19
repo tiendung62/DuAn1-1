@@ -1,4 +1,4 @@
-﻿using Main.BLL.Models;
+﻿using Main.BLL.Models2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,8 @@ namespace WinFormsApp1.Repositories
 {
     internal class KichThuocRepo
     {
-        DA1Context context = new DA1Context();
+        DUAN1Context context = new DUAN1Context();
+
         public List<Kichthuoc> getallVaiTroRepo()
         {
             return context.Kichthuocs.ToList();
@@ -22,8 +23,8 @@ namespace WinFormsApp1.Repositories
         public bool them(Kichthuoc kichthuoc)
         {
             context.Kichthuocs.Add(kichthuoc);
-            context.SaveChanges();
-            return true;
+            return context.SaveChanges() > 0 ;
+            
         }
         public bool sua(string IDND, Kichthuoc kichthuoc)
         {
@@ -38,9 +39,8 @@ namespace WinFormsApp1.Repositories
               
 
                 context.Update(obj);
-                context.SaveChanges();
+                return context.SaveChanges() > 0;
 
-                return true;
             }
             catch (Exception)
             {

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Main.BLL.Models
+namespace Main.BLL.Models2
 {
-    public partial class Degiay
+    public partial class Kichthuoc
     {
-        public Degiay()
+        public Kichthuoc()
         {
             Ctsanphams = new HashSet<Ctsanpham>();
         }
 
-        public string Degiay1 { get; set; } = null!;
+        public string IdKichthuoc { get; set; } = null!;
+        public string Kichthuoc1 { get; set; } = null!;
 
         public virtual ICollection<Ctsanpham> Ctsanphams { get; set; }
     }

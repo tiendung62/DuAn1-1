@@ -1,4 +1,4 @@
-﻿using Main.BLL.Models;
+﻿using Main.BLL.Models2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace Main.DAL.Services
         }
         public bool CheckLogin(string tk , string mk , List<NguoiDung> list)
         {
-            if (getAll(list).Where(x => x.Email == tk && x.MatKhau == mk).ToList().Count() != 0)
+            if (getAll(list).Where(x => x.Email == tk && x.MatKhau == mk).ToList().Count() > 0)
             {
                 return true;
             } else 

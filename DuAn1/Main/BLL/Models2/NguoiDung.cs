@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Main.BLL.Models
+namespace Main.BLL.Models2
 {
     public partial class NguoiDung
     {
@@ -13,9 +13,9 @@ namespace Main.BLL.Models
         public string IdnguoiDung { get; set; } = null!;
         public string? IdvaiTro { get; set; }
         public string? Ten { get; set; }
-        public string? MatKhau { get; set; }
+        public string MatKhau { get; set; } = null!;
         public string? Diachi { get; set; }
-        public string? Email { get; set; }
+        public string Email { get; set; } = null!;
         public string? Dthoai { get; set; }
         public string? Trangthai { get; set; }
 

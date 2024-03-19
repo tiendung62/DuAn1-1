@@ -1,4 +1,4 @@
-﻿using Main.BLL.Models;
+﻿using Main.BLL.Models2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +10,14 @@ namespace WinFormsApp1.Repositories
 {
     internal class ChatLieuRepo
     {
-        DA1Context context = new DA1Context();
+        DUAN1Context context = new DUAN1Context();
         public List<Chatlieu> getallSPrepo()
         {
             return context.Chatlieus.ToList();
         }
         public List<Chatlieu> FindSvByName(string name)
         {
-            return context.Chatlieus.Where(x => x.Chatlieuu.ToLower().Contains(name)).ToList();
+            return context.Chatlieus.Where(x => x.Chatlieu1.ToLower().Contains(name)).ToList();
         }
         public bool them(Chatlieu chatlieu)
         {
@@ -34,7 +34,7 @@ namespace WinFormsApp1.Repositories
                 {
                     return false;
                 }
-                obj.Chatlieuu = chatlieu.Chatlieuu;
+                obj.Chatlieu1 = chatlieu.Chatlieu1;
 
 
                 context.Update(obj);

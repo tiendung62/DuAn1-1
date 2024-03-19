@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Main.BLL.Models
+namespace Main.BLL.Models2
 {
-    public partial class DA1Context : DbContext
+    public partial class DUAN1Context : DbContext
     {
-        public DA1Context()
+        public DUAN1Context()
         {
         }
 
-        public DA1Context(DbContextOptions<DA1Context> options)
+        public DUAN1Context(DbContextOptions<DUAN1Context> options)
             : base(options)
         {
         }
@@ -22,9 +22,9 @@ namespace Main.BLL.Models
         public virtual DbSet<Hoadon> Hoadons { get; set; } = null!;
         public virtual DbSet<Hoadonct> Hoadoncts { get; set; } = null!;
         public virtual DbSet<Khachhang> Khachhangs { get; set; } = null!;
-        public virtual DbSet<Khuyenmai> Khuyenmais { get; set; } = null!;
         public virtual DbSet<Kichthuoc> Kichthuocs { get; set; } = null!;
         public virtual DbSet<Loaikhachhang> Loaikhachhangs { get; set; } = null!;
+        public virtual DbSet<Magiamgia> Magiamgia { get; set; } = null!;
         public virtual DbSet<Mausac> Mausacs { get; set; } = null!;
         public virtual DbSet<NguoiDung> NguoiDungs { get; set; } = null!;
         public virtual DbSet<NhaCungCap> NhaCungCaps { get; set; } = null!;
@@ -36,7 +36,7 @@ namespace Main.BLL.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=DA1;Integrated Security=True");
+                optionsBuilder.UseSqlServer("Server=TW4NENH\\TUANANH;Database=DUAN1;Trusted_Connection=True;");
             }
         }
 
@@ -44,13 +44,18 @@ namespace Main.BLL.Models
         {
             modelBuilder.Entity<Chatlieu>(entity =>
             {
-                entity.HasKey(e => e.Chatlieuu);
+                entity.HasKey(e => e.Chatlieu1);
 
                 entity.ToTable("CHATLIEU");
 
-                entity.Property(e => e.Chatlieuu)
+                entity.Property(e => e.Chatlieu1)
                     .HasMaxLength(50)
-                    .HasColumnName("CHATLIEUU");
+                    .HasColumnName("CHATLIEU");
+
+                entity.Property(e => e.Idchatlieu)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("IDCHATLIEU");
             });
 
             modelBuilder.Entity<Ctsanpham>(entity =>
@@ -75,11 +80,6 @@ namespace Main.BLL.Models
                 entity.Property(e => e.Giaban)
                     .HasColumnType("money")
                     .HasColumnName("GIABAN");
-
-                entity.Property(e => e.Idkm)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("IDKM");
 
                 entity.Property(e => e.Idncc)
                     .HasMaxLength(10)
@@ -113,11 +113,6 @@ namespace Main.BLL.Models
                     .HasForeignKey(d => d.Degiay)
                     .HasConstraintName("FK_CTSANPHAM_DEGIAY");
 
-                entity.HasOne(d => d.IdkmNavigation)
-                    .WithMany(p => p.Ctsanphams)
-                    .HasForeignKey(d => d.Idkm)
-                    .HasConstraintName("FK_CTSANPHAM_KHUYENMAI");
-
                 entity.HasOne(d => d.IdnccNavigation)
                     .WithMany(p => p.Ctsanphams)
                     .HasForeignKey(d => d.Idncc)
@@ -148,6 +143,11 @@ namespace Main.BLL.Models
                 entity.Property(e => e.Degiay1)
                     .HasMaxLength(50)
                     .HasColumnName("DEGIAY");
+
+                entity.Property(e => e.IdDegiay)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("ID_DEGIAY");
             });
 
             modelBuilder.Entity<Hoadon>(entity =>
@@ -165,6 +165,11 @@ namespace Main.BLL.Models
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasColumnName("IDKH");
+
+                entity.Property(e => e.Idmagiamgia)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("IDMAGIAMGIA");
 
                 entity.Property(e => e.IdnguoiDung)
                     .HasMaxLength(10)
@@ -193,6 +198,11 @@ namespace Main.BLL.Models
                     .WithMany(p => p.Hoadons)
                     .HasForeignKey(d => d.Idkh)
                     .HasConstraintName("FK_HOADON_KHACHHANG");
+
+                entity.HasOne(d => d.IdmagiamgiaNavigation)
+                    .WithMany(p => p.Hoadons)
+                    .HasForeignKey(d => d.Idmagiamgia)
+                    .HasConstraintName("FK_HOADON_MAGIAMGIA");
 
                 entity.HasOne(d => d.IdnguoiDungNavigation)
                     .WithMany(p => p.Hoadons)
@@ -268,7 +278,9 @@ namespace Main.BLL.Models
                     .IsUnicode(false)
                     .HasColumnName("IDLOAIND");
 
-                entity.Property(e => e.Sdt).HasColumnName("SDT");
+                entity.Property(e => e.Sdt)
+                    .HasMaxLength(15)
+                    .HasColumnName("SDT");
 
                 entity.Property(e => e.Ten)
                     .HasMaxLength(50)
@@ -280,35 +292,6 @@ namespace Main.BLL.Models
                     .HasConstraintName("FK_KHACHHANG_LOAIKHACHHANG");
             });
 
-            modelBuilder.Entity<Khuyenmai>(entity =>
-            {
-                entity.HasKey(e => e.Idkm);
-
-                entity.ToTable("KHUYENMAI");
-
-                entity.Property(e => e.Idkm)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("IDKM");
-
-                entity.Property(e => e.Giamgia)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("GIAMGIA");
-
-                entity.Property(e => e.Ngaytao)
-                    .HasColumnType("datetime")
-                    .HasColumnName("NGAYTAO");
-
-                entity.Property(e => e.Sukienkm)
-                    .HasMaxLength(50)
-                    .HasColumnName("SUKIENKM");
-
-                entity.Property(e => e.Trangthai)
-                    .HasMaxLength(50)
-                    .HasColumnName("TRANGTHAI");
-            });
-
             modelBuilder.Entity<Kichthuoc>(entity =>
             {
                 entity.HasKey(e => e.Kichthuoc1);
@@ -318,6 +301,11 @@ namespace Main.BLL.Models
                 entity.Property(e => e.Kichthuoc1)
                     .HasMaxLength(50)
                     .HasColumnName("KICHTHUOC");
+
+                entity.Property(e => e.IdKichthuoc)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("ID_KICHTHUOC");
             });
 
             modelBuilder.Entity<Loaikhachhang>(entity =>
@@ -345,6 +333,32 @@ namespace Main.BLL.Models
                     .HasColumnName("TEN");
             });
 
+            modelBuilder.Entity<Magiamgia>(entity =>
+            {
+                entity.HasKey(e => e.Idmagiamgia);
+
+                entity.ToTable("MAGIAMGIA");
+
+                entity.Property(e => e.Idmagiamgia)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("IDMAGIAMGIA");
+
+                entity.Property(e => e.Ngaybatdau)
+                    .HasColumnType("datetime")
+                    .HasColumnName("NGAYBATDAU");
+
+                entity.Property(e => e.Ngayketthuc)
+                    .HasColumnType("datetime")
+                    .HasColumnName("NGAYKETTHUC");
+
+                entity.Property(e => e.Phamtramgiam).HasColumnName("PHAMTRAMGIAM");
+
+                entity.Property(e => e.Tenma)
+                    .HasMaxLength(50)
+                    .HasColumnName("TENMA");
+            });
+
             modelBuilder.Entity<Mausac>(entity =>
             {
                 entity.HasKey(e => e.Mau);
@@ -354,6 +368,11 @@ namespace Main.BLL.Models
                 entity.Property(e => e.Mau)
                     .HasMaxLength(50)
                     .HasColumnName("MAU");
+
+                entity.Property(e => e.Idmau)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("IDMAU");
             });
 
             modelBuilder.Entity<NguoiDung>(entity =>
@@ -429,7 +448,9 @@ namespace Main.BLL.Models
                     .HasMaxLength(30)
                     .HasColumnName("LOAIDICHVU");
 
-                entity.Property(e => e.Sdt).HasColumnName("SDT");
+                entity.Property(e => e.Sdt)
+                    .HasMaxLength(15)
+                    .HasColumnName("SDT");
 
                 entity.Property(e => e.Tenncc)
                     .HasMaxLength(30)
@@ -439,7 +460,7 @@ namespace Main.BLL.Models
             modelBuilder.Entity<Sanpham>(entity =>
             {
                 entity.HasKey(e => e.Masp)
-                    .HasName("PK__SANPHAM__60228A32AD3574FD");
+                    .HasName("PK__SANPHAM__60228A32A8292C97");
 
                 entity.ToTable("SANPHAM");
 

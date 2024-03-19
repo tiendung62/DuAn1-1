@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Main.BLL.Models
+namespace Main.BLL.Models2
 {
     public partial class Ctsanpham
     {
@@ -11,7 +11,6 @@ namespace Main.BLL.Models
         }
 
         public string Idctsp { get; set; } = null!;
-        public string? Idkm { get; set; }
         public string? Idncc { get; set; }
         public string? Masp { get; set; }
         public string? Mau { get; set; }
@@ -23,7 +22,6 @@ namespace Main.BLL.Models
 
         public virtual Chatlieu? ChatlieuuNavigation { get; set; }
         public virtual Degiay? DegiayNavigation { get; set; }
-        public virtual Khuyenmai? IdkmNavigation { get; set; }
         public virtual NhaCungCap? IdnccNavigation { get; set; }
         public virtual Kichthuoc? KichthuocNavigation { get; set; }
         public virtual Sanpham? MaspNavigation { get; set; }
