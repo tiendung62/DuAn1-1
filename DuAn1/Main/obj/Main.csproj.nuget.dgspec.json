@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\da1\\DuAn1\\DuAn1\\Main\\Main.csproj": {}
+    "D:\\dự án 1\\githup new\\DuAn1\\DuAn1\\Main\\Main.csproj": {}
   },
   "projects": {
-    "D:\\da1\\DuAn1\\DuAn1\\Main\\Main.csproj": {
+    "D:\\dự án 1\\githup new\\DuAn1\\DuAn1\\Main\\Main.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\da1\\DuAn1\\DuAn1\\Main\\Main.csproj",
+        "projectUniqueName": "D:\\dự án 1\\githup new\\DuAn1\\DuAn1\\Main\\Main.csproj",
         "projectName": "Main",
-        "projectPath": "D:\\da1\\DuAn1\\DuAn1\\Main\\Main.csproj",
+        "projectPath": "D:\\dự án 1\\githup new\\DuAn1\\DuAn1\\Main\\Main.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "D:\\da1\\DuAn1\\DuAn1\\Main\\obj\\",
+        "outputPath": "D:\\dự án 1\\githup new\\DuAn1\\DuAn1\\Main\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
